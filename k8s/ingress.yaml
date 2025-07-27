@@ -9,13 +9,12 @@ metadata:
     networking.gke.io/managed-certificates: ""  # optional for HTTPS certs
 spec:
   rules:
-    - host: YOUR_DOMAIN_HERE   # replace after DNS
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: api-service
-                port:
-                  number: 80
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 80
