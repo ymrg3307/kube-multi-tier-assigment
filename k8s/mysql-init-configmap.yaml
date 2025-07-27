@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb
+  labels:
+    app: demo
+data:
+  schema.sql: |
+    -- Create database and table for demo records
+    CREATE DATABASE IF NOT EXISTS demo;
+    USE demo;
+
+    CREATE TABLE IF NOT EXISTS records (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      description VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  seed.sql: |
+    USE demo;
+
+    INSERT INTO records (name, description) VALUES
+    ('Alpha', 'First record'),
+    ('Bravo', 'Second record'),
+    ('Charlie', 'Third record'),
+    ('Delta', 'Fourth record'),
+    ('Echo', 'Fifth record');

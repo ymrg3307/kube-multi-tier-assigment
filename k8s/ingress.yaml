@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  labels:
+    app: demo
+  annotations:
+    kubernetes.io/ingress.class: "gce"  # for GKE
+    networking.gke.io/managed-certificates: ""  # optional for HTTPS certs
+spec:
+  rules:
+    - host: YOUR_DOMAIN_HERE   # replace after DNS
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 80
